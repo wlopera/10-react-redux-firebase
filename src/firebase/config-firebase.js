@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 // Aplicacion WEB Firebase
@@ -36,4 +37,5 @@ export {
   updateProfile,
   db,
   googleAuthProvider,
+  onAuthStateChanged,
 };

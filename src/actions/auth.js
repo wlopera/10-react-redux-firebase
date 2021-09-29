@@ -19,8 +19,7 @@ export const googleLogin = () => {
 export const emailAndPasswordLogin = (email, password) => {
   return (dispatch) => {
     signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      console.log(user);
-      // dispatch(login(user.uid, user.displayName));
+      dispatch(login(user.uid, user.displayName));
     });
   };
 };

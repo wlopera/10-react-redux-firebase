@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import GoogleButtom from "react-google-button";
@@ -23,15 +23,22 @@ const LoginScreen = () => {
     });
   };
 
-  const dispatch = useDispatch();
-
   const handleGoogleLogin = () => {
     dispatch(googleLogin());
   };
 
   const handleEmailLogin = (e) => {
-    e.preventDefaul();
-    dispatch(emailAndPasswordLogin(email.password));
+    e.preventDefault();
+
+    if (email.trim() === "" || !email.trim().includes("@")) {
+      return;
+    }
+
+    if (password.trim().length < 6) {
+      return;
+    }
+
+    dispatch(emailAndPasswordLogin(email, password));
   };
 
   return (
