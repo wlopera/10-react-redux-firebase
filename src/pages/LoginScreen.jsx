@@ -4,13 +4,34 @@ import { useDispatch } from "react-redux";
 import GoogleButtom from "react-google-button";
 import { Link } from "react-router-dom";
 
-import { googleLogin } from "../actions/auth";
+import { googleLogin, emailAndPasswordLogin } from "../actions/auth";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
 
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = data;
+
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const dispatch = useDispatch();
+
   const handleGoogleLogin = () => {
     dispatch(googleLogin());
+  };
+
+  const handleEmailLogin = (e) => {
+    e.preventDefaul();
+    dispatch(emailAndPasswordLogin(email.password));
   };
 
   return (
@@ -18,15 +39,18 @@ const LoginScreen = () => {
       <h3>Iniciar Sesión</h3>
       <hr />
       <div className="row container">
-        <form className="col s12">
+        <form onSubmit={handleEmailLogin} className="col s12">
           <div className="input-field col s12">
             <i className="material-icons prefix">email</i>
             <input
-              id="icon_prefix2"
+              id="icon_prefix1"
               className="materialize-textarea"
-              type="text"
+              type="email"
+              onChange={handleChange}
+              value={email}
+              name="email"
             />
-            <label htmlFor="icon_prefix2">Correo</label>
+            <label htmlFor="icon_prefix1">Correo</label>
           </div>
 
           <div className="input-field col s12">
@@ -34,7 +58,10 @@ const LoginScreen = () => {
             <input
               id="icon_prefix2"
               className="materialize-textarea"
-              type="text"
+              type="password"
+              onChange={handleChange}
+              value={password}
+              name="password"
             />
             <label htmlFor="icon_prefix2">Contraseña</label>
           </div>

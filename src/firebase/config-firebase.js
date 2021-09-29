@@ -1,7 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { GoogleAuthProvider } from "firebase/auth";
-import { getAuth, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 
 // Aplicacion WEB Firebase
 const firebaseConfig = {
@@ -21,4 +27,13 @@ const auth = getAuth();
 const db = getFirestore();
 const googleAuthProvider = new GoogleAuthProvider();
 
-export { app, auth, signInWithPopup, db, googleAuthProvider };
+export {
+  app,
+  auth,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  db,
+  googleAuthProvider,
+};
